@@ -499,7 +499,7 @@ AC_ARG_ENABLE([libcap],
 
 AC_ARG_ENABLE([player],
   [AS_HELP_STRING([--enable-player],
-  [enable additional players from a list of comma separated names, (default is none, choices are amlplayer, omxplayer)])],
+  [enable additional players from a list of comma separated names, (default is none, choices are amlplayer, omxplayer, gstplayer)])],
   [add_players=$enableval],
   [add_players=no])
 
@@ -675,6 +675,22 @@ case $use_platform in
      AC_SUBST(ARCH_DEFINES, "-DTARGET_POSIX -DTARGET_LINUX -D_LINUX -D_ARMEL -DTARGET_RASPBERRY_PI")
      AC_DEFINE(HAS_EGLGLES, [1], [Define if supporting EGL based GLES Framebuffer])
      USE_OMXLIB=1; AC_DEFINE([HAVE_OMXLIB],[1],["Define to 1 if OMX libs is enabled"])
+     CFLAGS="$CFLAGS"
+     CXXFLAGS="$CXXFLAGS"
+     ffmpeg_target_os=linux
+     ;;
+  pandaboard)
+     target_platform=target_pandaboard
+     use_neon=yes
+     use_texturepacker=yes
+     use_texturepacker_native=yes
+     use_arch="arm"
+     use_cpu=cortex-a9
+     use_hardcoded_tables="yes"
+     use_alsa="no"
+     ARCH="arm"
+     AC_SUBST(ARCH_DEFINES, "-DTARGET_POSIX -DTARGET_LINUX -D_LINUX -D_ARMHF")
+     AC_DEFINE(HAS_EGLGLES, [1], [Define if supporting EGL based GLES Framebuffer])
      CFLAGS="$CFLAGS"
      CXXFLAGS="$CXXFLAGS"
      ffmpeg_target_os=linux
@@ -1830,6 +1846,9 @@ case $add_players in
   *omxplayer*)
       XB_ADD_PLAYER([OMXPLAYER], [omxplayer])
       ;;
+  *gstplayer*)
+      XB_ADD_PLAYER([GSTPLAYER], [gstplayer])
+      ;;  
 esac
 
 # platform specific bin utilities
