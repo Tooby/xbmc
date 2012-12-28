@@ -23,6 +23,9 @@
 #include "cores/IPlayer.h"
 #include "PlayerCoreFactory.h"
 #include "cores/dvdplayer/DVDPlayer.h"
+#if HAVE_LIBGSTREAMER
+#include "cores/gstplayer/GstPlayer.h"
+#endif
 #include "cores/paplayer/PAPlayer.h"
 #if defined(HAS_AMLPLAYER)
 #include "cores/amlplayer/AMLPlayer.h"
