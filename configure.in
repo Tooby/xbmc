@@ -159,6 +159,8 @@ libcec_enabled="== libcec enabled. =="
 libcec_disabled="== libcec disabled. CEC adapter support will not be available. =="
 libcec_disabled_missing_libs="== libcec disabled because it either needs libudev, or libusb a compatible version of the RPi API. CEC adapter support will not be available. =="
 cec_rpi_api_missing="== no compatible RPi API found =="
+gstreamer_not_found="== GStreamer libraries not found. GStreamer support disabled. =="
+gstreamer_disabled="== GStreamer support manually disabled. =="
 
 # External library message strings
 external_libraries_enabled="== Use of all supported external libraries enabled. =="
@@ -2326,6 +2328,7 @@ OUTPUT_FILES="Makefile \
     xbmc/cdrip/Makefile \
     xbmc/cores/Makefile \
     xbmc/cores/VideoRenderers/Makefile \
+    xbmc/cores/gstplayer/Makefile \
     xbmc/cores/dvdplayer/Makefile \
     lib/Makefile \
     lib/libdvd/Makefile \
