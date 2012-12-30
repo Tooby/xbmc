@@ -680,8 +680,6 @@ case $use_platform in
 pandaboard)
      target_platform=target_pandaboard
      use_neon=yes
-     use_texturepacker=yes
-     use_texturepacker_native=yes
      use_arch="arm"
      use_cpu=cortex-a9
      use_hardcoded_tables="yes"
@@ -689,7 +687,7 @@ pandaboard)
      ARCH="arm"
      AC_SUBST(ARCH_DEFINES, "-DTARGET_POSIX -DTARGET_LINUX -D_LINUX -D_ARMHF")
      AC_DEFINE(HAS_EGLGLES, [1], [Define if supporting EGL based GLES Framebuffer])
-     CFLAGS="$CFLAGS -march=armv7-a"
+     CFLAGS="$CFLAGS -march=armv7-a -mfloat-abi=hard -mfpu=vfp -mabi=aapcs-linux -Wno-psabi -Wa,-mno-warn-deprecated -Wno-deprecated-declarations"
      CXXFLAGS="$CXXFLAGS -march=armv7-a"
      ffmpeg_target_os=linux
      ;;
