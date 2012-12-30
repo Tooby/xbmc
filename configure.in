@@ -677,6 +677,22 @@ case $use_platform in
      CXXFLAGS="$CXXFLAGS"
      ffmpeg_target_os=linux
      ;;
+pandaboard)
+     target_platform=target_pandaboard
+     use_neon=yes
+     use_texturepacker=yes
+     use_texturepacker_native=yes
+     use_arch="arm"
+     use_cpu=cortex-a9
+     use_hardcoded_tables="yes"
+     use_alsa="no"
+     ARCH="arm"
+     AC_SUBST(ARCH_DEFINES, "-DTARGET_POSIX -DTARGET_LINUX -D_LINUX -D_ARMHF")
+     AC_DEFINE(HAS_EGLGLES, [1], [Define if supporting EGL based GLES Framebuffer])
+     CFLAGS="$CFLAGS -march=armv7-a"
+     CXXFLAGS="$CXXFLAGS -march=armv7-a"
+     ffmpeg_target_os=linux
+     ;;
 esac
 
 if test "$build_shared_lib" = "yes"; then
